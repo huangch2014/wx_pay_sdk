@@ -77,6 +77,7 @@ class Wechat{
      * @param $sign_data
      */
     public function setWxSign($sign_data) {
+        if (isset($sign_data['sign'])) unset($sign_data['sign']);
         ksort($sign_data);
         $sign_str = urldecode(http_build_query($sign_data));
         return strtoupper(md5($sign_str.'&key='.$this->wechat_config['KEY']));
@@ -154,3 +155,4 @@ class Wechat{
         return $xml;
     }
 }
+?>
